@@ -1,7 +1,8 @@
-export const addProduct = (data) => {
+import axios from 'axios'
+
+export const addProduct = () => {
     return {
         type: "ADD_PRODUCT",
-        payload: data
     }
 }
 
@@ -12,12 +13,12 @@ export const getAllProducts = (data) => {
     }
 }
 
-export const deleteProduct = (id) => {
-    return {
-        type: "DELETE_PRODUCT",
-        payload: id
-    }
-}
+// export const deleteProduct = (id) => {
+//     return {
+//         type: "DELETE_PRODUCT",
+//         payload: id
+//     }
+// }
 
 export const getProduct = (id) => {
     return {
@@ -39,6 +40,13 @@ const loading = () => {
     }
 }
 
+const errMsg = (msg) => {
+    return {
+        type: "ERROR",
+        payload: msg
+    }
+}
+
 
 //middleware
 
@@ -48,15 +56,32 @@ export const getAllProductsAsync = () => {
        fetch('http://localhost:3000/products')
        .then(res => res.json())
        .then(data => dispatch(getAllProducts(data)))
-       .catch(err => console.log(err));
+       .catch(err => dispatch(errMsg(err.message)));
     }
 }
 
-// export const addProductAsync = () => {
-//     return (dispatch) => {
-//         dispatch(loading())
-//         setTimeout(()=> {
-//             dispatch(getAllProducts())
-//         }, 3000)
-//     }
-// }
+export const addProductAsync = (data) => {
+    return async(dispatch) => {
+        dispatch(loading())
+       try {
+        let res = await axios.post('http://localhost:3000/products', data)
+        dispatch(addProduct());
+       } catch (error) {
+        console.log(error);
+        dispatch(errMsg(error.message))
+       }
+    }
+}
+
+export const deleteProductAsync = (id) => {
+    return async(dispatch) => {
+        dispatch(loading())
+       try {
+        let res = await axios.delete(`http://localhost:3000/products/${id}`)
+        dispatch(getAllProductsAsync());
+       } catch (error) {
+        console.log(error);
+        dispatch(errMsg(error.message))
+       }
+    }
+}

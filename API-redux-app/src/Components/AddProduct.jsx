@@ -1,11 +1,12 @@
 import generateUniqueId from "generate-unique-id";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
-import { useDispatch } from "react-redux";
-import { addProduct } from "../services/actions/productAction";
+import { useDispatch, useSelector } from "react-redux";
+import { addProductAsync } from "../services/actions/productAction";
 import { useNavigate } from "react-router";
 
 const AddProduct = () => {
+  const { isCreated, errorMsg } = useSelector(state => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
     const intialState = {
@@ -31,14 +32,20 @@ const AddProduct = () => {
         e.preventDefault();
         inputForm.id = generateUniqueId({length: 10})
         console.log('submit: ', inputForm);
-        dispatch(addProduct(inputForm))
+        dispatch(addProductAsync(inputForm))
+    }
+
+    useEffect(()=> {
+      if(isCreated){
         setInputForm(intialState);
         navigate("/");
-    }
+      }
+    }, [isCreated]);
     return(
         <>
         <Container>
             <h2>Add Product Details</h2>
+            { errorMsg ? <p>{errorMsg}</p> : "" }
             <Form onSubmit={handleSubmit}>
         <Form.Group as={Row} className="mb-3" >
           <Form.Label column sm="2">

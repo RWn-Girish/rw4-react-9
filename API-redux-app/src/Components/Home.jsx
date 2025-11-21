@@ -3,12 +3,12 @@ import { Button, Spinner, Table } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
 import {
-  deleteProduct,
+  deleteProductAsync,
   getAllProductsAsync,
 } from "../services/actions/productAction";
 
 const Home = () => {
-  const { products, isLoading } = useSelector((state) => state);
+  const { products, isLoading, errorMsg } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -17,7 +17,7 @@ const Home = () => {
   };
   const handleDelete = (id) => {
     // console.log(id);
-    dispatch(deleteProduct(id));
+    dispatch(deleteProductAsync(id));
   };
 
   useEffect(() => {
@@ -27,7 +27,7 @@ const Home = () => {
     <>
       <h2>Home Page</h2>
       {
-        isLoading ? <Spinner /> : <Table>
+        errorMsg? <p>{errorMsg}</p> : isLoading ? <Spinner /> : <Table>
         <thead>
           <tr>
             <th>#</th>
@@ -44,7 +44,7 @@ const Home = () => {
             <tr key={prod.id}>
               <td>{prod.id}</td>
               <td>{prod.title}</td>
-              <td>{prod.description}</td>
+              <td>{prod.desc}</td>
               <td>{prod.category}</td>
               <td>{prod.price}</td>
               <td>

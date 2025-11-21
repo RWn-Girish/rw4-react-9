@@ -4,7 +4,7 @@
       "id": "1",
       "title": "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
       "price": 109.95,
-      "description": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
+      "desc": "Your perfect pack for everyday use and walks in the forest. Stash your laptop (up to 15 inches) in the padded sleeve, your everyday",
       "category": "men's clothing",
       "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
       "rating": {
@@ -15,7 +15,7 @@
     {
       "id": "0f15",
       "title": "Eyeshadow Palette with Mirror",
-      "description": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
+      "desc": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
       "category": "beauty",
       "price": 109.95,
       "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
@@ -23,6 +23,15 @@
         "rate": 3.9,
         "count": 120
       }
+    },
+    {
+      "id": "3lt4wefvi8",
+      "title": "asdasd",
+      "desc": "zzz",
+      "price": "1250",
+      "quantity": "2",
+      "image": "https://tse3.mm.bing.net/th/id/OIP.8TTD70YWU-VBCQkO4wVOkAHaDt?pid=Api&P=0&h=180",
+      "category": "Electronics"
     }
   ],
   "users": [],
