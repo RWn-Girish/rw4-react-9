@@ -3,7 +3,8 @@ const intialState = {
     product: null,
     isLoading: false,
     isCreated: false,
-    errorMsg: ""
+    errorMsg: "",
+    isUpdated: false
 }
 
 
@@ -30,7 +31,8 @@ export const productReducer = (state = intialState, action) => {
             products: action.payload,
             isLoading: false,
             errorMsg: "",
-            isCreated: false
+            isCreated: false,
+            isUpdated: false
         }
         // case "DELETE_PRODUCT":
         //     return {
@@ -38,26 +40,15 @@ export const productReducer = (state = intialState, action) => {
         //         products: deleteData
         //     }
         case "GET_PRODUCT":
-            let getData = JSON.parse(localStorage.getItem('products')) || [];
-            let record = getData.find(prod => prod.id == action.payload)
             return {
                 ...state,
-                product: record
+                product: action.payload
             }
         case "UPDATE_PRODUCT":
-            let GetData = JSON.parse(localStorage.getItem('products')) || [];
-            let updateData = GetData.map(prod => {
-                if(prod.id == action.payload.id){
-                    return action.payload
-                }else{
-                    return prod;
-                }
-            })
-            localStorage.setItem('products', JSON.stringify(updateData));
             return {
                 ...state,
                 product: null,
-                products:updateData
+                isUpdated: true
             }
         default:
             return state;

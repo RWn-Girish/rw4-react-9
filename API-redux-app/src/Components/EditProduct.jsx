@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router";
-import { getProduct, updateProduct } from "../services/actions/productAction";
+import { getProductAsync, updateProductAsync } from "../services/actions/productAction";
 
 const EditProduct = () => {
   const { id } = useParams();
-  const { product } = useSelector((state) => state);
+  const { product, isUpdated, errorMsg } = useSelector((state) => state);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const intialState = {
@@ -31,10 +31,16 @@ const EditProduct = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log("submit: ", inputForm);
-    dispatch(updateProduct(inputForm))
-    setInputForm(intialState);
-    navigate("/");
+    dispatch(updateProductAsync(inputForm))
   };
+
+  useEffect(()=> {
+    if(isUpdated){
+      setInputForm(intialState);
+      navigate("/");
+    }
+  }, [isUpdated])
+
   useEffect(()=> {
     if(product){
         setInputForm(product);
@@ -42,12 +48,13 @@ const EditProduct = () => {
   }, [product])
 
   useEffect(() => {
-    dispatch(getProduct(id));
+    dispatch(getProductAsync(id));
   }, [id]);
   return (
     <>
       <Container>
         <h2>Edit Product Details</h2>
+        {errorMsg ? <p>{errorMsg}</p> : ""}
         <Form onSubmit={handleSubmit}>
           <Form.Group as={Row} className="mb-3">
             <Form.Label column sm="2">

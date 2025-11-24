@@ -10,28 +10,26 @@
       "rating": {
         "rate": 3.9,
         "count": 120
-      }
-    },
-    {
-      "id": "0f15",
-      "title": "Eyeshadow Palette with Mirror",
-      "desc": "The Eyeshadow Palette with Mirror offers a versatile range of eyeshadow shades for creating stunning eye looks. With a built-in mirror, it's convenient for on-the-go makeup application.",
-      "category": "beauty",
-      "price": 109.95,
-      "image": "https://fakestoreapi.com/img/81fPKd-2AYL._AC_SL1500_t.png",
-      "rating": {
-        "rate": 3.9,
-        "count": 120
-      }
+      },
+      "quantity": "152"
     },
     {
       "id": "3lt4wefvi8",
-      "title": "asdasd",
+      "title": "ABC",
       "desc": "zzz",
       "price": "1250",
       "quantity": "2",
       "image": "https://tse3.mm.bing.net/th/id/OIP.8TTD70YWU-VBCQkO4wVOkAHaDt?pid=Api&P=0&h=180",
       "category": "Electronics"
+    },
+    {
+      "id": "5ynzw1d7xx",
+      "title": "dfasdfdasfas",
+      "desc": "zzz",
+      "price": "1234",
+      "quantity": "343",
+      "image": "https://m.media-amazon.com/images/I/71BJfGh0aRL._SY741_.jpg",
+      "category": "Fashion"
     }
   ],
   "users": [],
