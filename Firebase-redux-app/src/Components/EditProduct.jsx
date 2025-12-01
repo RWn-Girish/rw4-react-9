@@ -6,7 +6,7 @@ import { getProductAsync, updateProductAsync } from "../services/actions/product
 
 const EditProduct = () => {
   const { id } = useParams();
-  const { product, isUpdated, errorMsg } = useSelector((state) => state);
+  const { product, isUpdated, errorMsg } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const intialState = {

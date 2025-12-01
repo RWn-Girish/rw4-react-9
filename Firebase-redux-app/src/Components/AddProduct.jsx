@@ -6,7 +6,8 @@ import { addProductAsync } from "../services/actions/productAction";
 import { useNavigate } from "react-router";
 
 const AddProduct = () => {
-  const { isCreated, errorMsg } = useSelector(state => state);
+  const {user} = useSelector(state => state.authReducer);
+  const { isCreated, errorMsg } = useSelector(state => state.productReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
     const intialState = {
@@ -41,6 +42,12 @@ const AddProduct = () => {
         navigate("/");
       }
     }, [isCreated]);
+
+    useEffect(()=> {
+      if(!user){
+        navigate("/signin")
+      }
+    }, [user]);
     return(
         <>
         <Container>

@@ -8,7 +8,7 @@ import {
 } from "../services/actions/productAction";
 
 const Home = () => {
-  const { products, isLoading, errorMsg } = useSelector((state) => state);
+  const { products, isLoading, errorMsg } = useSelector((state) => state.productReducer);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
