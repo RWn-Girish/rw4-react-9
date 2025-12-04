@@ -4,6 +4,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { addProductAsync } from "../services/actions/productAction";
 import { useNavigate } from "react-router";
+import { uploadFile } from "../services/uploadFile";
 
 const AddProduct = () => {
   const {user} = useSelector(state => state.authReducer);
@@ -27,6 +28,15 @@ const AddProduct = () => {
         ...inputForm,
         [name]: value
     })
+    }
+
+    const handleImage = async(e) => {
+      let url = await uploadFile(e.target.files[0]);
+
+      setInputForm({
+        ...inputForm,
+        image: url
+      })
     }
 
     const handleSubmit = (e) => {
@@ -105,10 +115,10 @@ const AddProduct = () => {
             Image
           </Form.Label>
           <Col sm="10">
-            <Form.Control type="text" name="image" value={inputForm.image} onChange={handleChanged} placeholder="Enter Image URL" />
+            <Form.Control type="file" name="image" onChange={handleImage} />
           </Col>
         </Form.Group>
-        <Button type="submit">Add Product</Button>
+        <Button type="submit" disabled={inputForm.image == ""}>Add Product</Button>
       </Form>
         </Container>
         </>
